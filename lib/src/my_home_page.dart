@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       height: 500,
       width: 500,
       flag: OverlayFlag.focusPointer,
+      enableDrag: true,
     );
   }
 
