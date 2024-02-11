@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_overlay_window_sample_app/src/my_home_page.dart';
-import 'package:flutter_overlay_window_sample_app/src/overlay_increase_button.dart';
+import 'package:flutter_overlay_window_sample_app/src/main_app_screen.dart';
+import 'package:flutter_overlay_window_sample_app/src/overlay_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(title: 'Overlay Test'),
+      home: MainAppScreen(title: 'Overlay Test'),
     ),
   );
 }
@@ -18,7 +18,7 @@ void overlayMain() {
   runApp(
     const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: OverlayIncreaseButton(),
+      home: OverlayScreen(),
     ),
   );
 }

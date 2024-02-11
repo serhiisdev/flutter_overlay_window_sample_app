@@ -2,15 +2,15 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_overlay_window/flutter_overlay_window.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class MainAppScreen extends StatefulWidget {
+  const MainAppScreen({super.key, required this.title});
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MainAppScreen> createState() => _MainAppScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MainAppScreenState extends State<MainAppScreen> {
   StreamSubscription<dynamic>? _overlayListener;
   int _counter = 0;
 
@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _overlayListener = FlutterOverlayWindow.overlayListener.listen((event) {
-      print("MyHomePage Event from overlay: $event");
+      print("MainAppScreen Event from overlay: $event");
       if (!mounted) return;
       setState(() {
         _counter += 1;
