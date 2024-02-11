@@ -11,9 +11,13 @@ class OverlayIncreaseButton extends StatefulWidget {
 
 class _OverlayIncreaseButtonState extends State<OverlayIncreaseButton> {
   StreamSubscription<dynamic>? _overlayListener;
+  int _counter = 0;
 
-  Future<void> _onPressed() async {
+  Future<void> _incrementCounter() async {
     await FlutterOverlayWindow.shareData("Hello Flutter app from overlay");
+    setState(() {
+      _counter++;
+    });
   }
 
   Future<void> _closeOverlay() async {
@@ -25,6 +29,10 @@ class _OverlayIncreaseButtonState extends State<OverlayIncreaseButton> {
     super.initState();
     _overlayListener ??= FlutterOverlayWindow.overlayListener.listen((event) {
       print("OverlayIncreaseButton Event from main Flutter app: $event");
+      if (!mounted) return;
+      setState(() {
+        _counter += 1;
+      });
     });
   }
 
@@ -38,20 +46,19 @@ class _OverlayIncreaseButtonState extends State<OverlayIncreaseButton> {
   Widget build(BuildContext context) {
     return Material(
       type: MaterialType.transparency,
-      child: Stack(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Positioned(
-            right: 0,
-            top: 0,
+          Align(
+            alignment: Alignment.centerRight,
             child: CloseButton(
               onPressed: _closeOverlay,
             ),
           ),
-          Center(
-            child: IconButton(
-              onPressed: _onPressed,
-              icon: const Icon(Icons.add_circle_outlined),
-            ),
+          Text('Overlay counter: $_counter'),
+          IconButton(
+            onPressed: _incrementCounter,
+            icon: const Icon(Icons.add_circle_outlined),
           ),
         ],
       ),

@@ -74,7 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: _handleToggleOverlay,
                 child: const Text('Toggle overlay')),
             const Text(
-              'You have pushed the button this many times:',
+              'Main app counter:',
             ),
             Text(
               '$_counter',
