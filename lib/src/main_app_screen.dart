@@ -34,8 +34,10 @@ class _MainAppScreenState extends State<MainAppScreen> {
     );
   }
 
-  void _incrementCounter() {
-    FlutterOverlayWindow.shareData("Hello Overlay from Flutter side");
+  Future<void> _incrementCounter() async {
+    final isSent =
+        await FlutterOverlayWindow.shareData("Hello Overlay from Flutter side");
+    print('[MainAppScreen] Is message sent: $isSent');
     setState(() {
       _counter++;
     });
@@ -45,7 +47,7 @@ class _MainAppScreenState extends State<MainAppScreen> {
   void initState() {
     super.initState();
     _overlayListener = FlutterOverlayWindow.overlayListener.listen((event) {
-      print("MainAppScreen Event from overlay: $event");
+      print("[MainAppScreen] Event from overlay: $event");
       if (!mounted) return;
       setState(() {
         _counter += 1;

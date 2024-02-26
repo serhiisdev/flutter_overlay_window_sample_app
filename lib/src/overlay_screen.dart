@@ -14,7 +14,8 @@ class _OverlayScreenState extends State<OverlayScreen> {
   int _counter = 0;
 
   Future<void> _incrementCounter() async {
-    await FlutterOverlayWindow.shareData("Hello Flutter app from overlay");
+   final isSent = await FlutterOverlayWindow.shareData("Hello Flutter app from overlay");
+   print('[OverlayScreen] Is message sent: $isSent');
     setState(() {
       _counter++;
     });
@@ -28,7 +29,7 @@ class _OverlayScreenState extends State<OverlayScreen> {
   void initState() {
     super.initState();
     _overlayListener ??= FlutterOverlayWindow.overlayListener.listen((event) {
-      print("OverlayScreen Event from main Flutter app: $event");
+      print("[OverlayScreen] Event from main Flutter app: $event");
       if (!mounted) return;
       setState(() {
         _counter += 1;
